@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin()
 public class PaymentController {
 
     @Autowired
@@ -21,6 +22,16 @@ public class PaymentController {
     public Object createUser(@RequestBody User user) {
         try {
             return stripeService.createUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @GetMapping("/getAllUsers")
+    public Object getAllUsers() {
+        try {
+            return stripeService.getAllUsers();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
